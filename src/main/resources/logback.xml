@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Define o padrão de log sem o nome da thread -->
+    <property name="CONSOLE_LOG_PATTERN" value="%highlight(%-4level){'TRACE':'gray', 'DEBUG':'gray', 'INFO':'green', 'WARN':'yellow', 'ERROR':'red'} %cyan(%d{HH:mm:ss}) %blue(%logger{36}) - %msg%n"/>
+
+    <!-- Definindo o appender do console -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Suprimir logs de auto-configuração -->
+    <logger name="org.springframework.boot.autoconfigure" level="ERROR" />
+
+    <!-- Nível de log padrão da aplicação (INFO ou ERROR) -->
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>

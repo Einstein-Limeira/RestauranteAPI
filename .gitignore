@@ -35,3 +35,14 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Ignorar diretórios de build do Gradle
+/build/
+/.gradle/
+
+# Ignorar arquivos de configuração do IntelliJ
+/.idea/
+.idea/
+
+# Ignorar arquivos de classe Java compilados
+*.class
