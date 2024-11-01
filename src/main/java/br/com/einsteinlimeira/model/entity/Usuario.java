@@ -1,6 +1,7 @@
 package br.com.einsteinlimeira.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Usuario {
     private String nome;
 
     @NotNull
+    @Email
     @Size(max = 50)
     @Column(name = "email", length = 50, unique = true, nullable = false)
     private String email;
