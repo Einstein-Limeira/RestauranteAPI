@@ -1,4 +1,8 @@
 package br.com.einsteinlimeira.repository;
 
-public class MesaRepository {
+import br.com.einsteinlimeira.model.entity.Mesa;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MesaRepository extends JpaRepository<Mesa, Integer> {
+
 }
