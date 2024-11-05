@@ -9,20 +9,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "mesa", schema = "public")
-public class Mesa {
+@Table(name = "status_mesa", schema = "public")
+public class StatusMesa {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
-    @Size(max = 40)
-    @Column(name = "descricao", length = 40, nullable = false)
+    @Size(max = 30)
+    @Column(name = "descricao", length = 30, nullable = false)
     private String descricao;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_statusmesa", nullable = false)
-    private StatusMesa statusMesa;
 }
