@@ -13,7 +13,6 @@ import lombok.Setter;
 public class Permissao {
 
     @Id
-    @NotNull
     @Column(name = "id", nullable = false)
     private Integer id;
 

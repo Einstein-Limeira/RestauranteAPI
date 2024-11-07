@@ -20,22 +20,22 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public UsuarioDTO findUserById(@PathVariable  Integer id) {
+    public UsuarioDTO findUserById(@PathVariable Integer id) {
         return usuarioService.getUserById(id);
     }
 
     @PostMapping
-    public void saveUser(@RequestBody @Valid UsuarioDTO usuarioDTO) {
-        usuarioService.saveUser(usuarioDTO);
+    public UsuarioDTO saveUser(@RequestBody @Valid UsuarioDTO usuarioDTO) {
+        return usuarioService.saveUser(usuarioDTO);
     }
 
     @PatchMapping("/{id}")
-    public void updateUser(@PathVariable Integer id, @RequestBody @Valid UsuarioDTO usuarioDTO) {
-        usuarioService.updateUser(id, usuarioDTO);
+    public UsuarioDTO updateUser(@PathVariable Integer id, @RequestBody @Valid UsuarioDTO usuarioDTO) {
+        return usuarioService.updateUser(id, usuarioDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Integer id) {
-        usuarioService.deleteUser(id);
+    public UsuarioDTO deleteUser(@PathVariable Integer id) {
+        return usuarioService.deleteUser(id);
     }
 }

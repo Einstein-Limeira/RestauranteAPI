@@ -25,17 +25,17 @@ public class SituacaoCadastroController {
     }
 
     @PostMapping
-    public void save(@RequestBody @Valid SituacaoCadastroDTO situacaoCadastroDTO) {
-        situacaoCadastroService.save(situacaoCadastroDTO);
+    public SituacaoCadastroDTO save(@RequestBody @Valid SituacaoCadastroDTO situacaoCadastroDTO) {
+        return situacaoCadastroService.save(situacaoCadastroDTO);
     }
 
     @PatchMapping("/{id}")
-    public void update(@PathVariable Integer id, @RequestBody @Valid SituacaoCadastroDTO situacaoCadastroDTO) {
-        situacaoCadastroService.update(id, situacaoCadastroDTO);
+    public SituacaoCadastroDTO update(@PathVariable Integer id, @RequestBody @Valid SituacaoCadastroDTO situacaoCadastroDTO) {
+        return situacaoCadastroService.update(id, situacaoCadastroDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        situacaoCadastroService.delete(id);
+    public SituacaoCadastroDTO delete(@PathVariable Integer id) {
+        return situacaoCadastroService.delete(id);
     }
 }

@@ -1,4 +1,10 @@
 package br.com.einsteinlimeira.repository;
 
-public interface PermissaoRepository {
+import br.com.einsteinlimeira.model.entity.Permissao;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PermissaoRepository extends JpaRepository<Permissao, Integer> {
+
 }

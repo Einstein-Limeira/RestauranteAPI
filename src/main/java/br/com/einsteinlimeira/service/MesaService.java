@@ -15,6 +15,7 @@ public class MesaService {
     @Autowired
     private MesaRepository mesaRepository;
 
+
     public List<MesaDTO> findAll() {
         return mesaRepository.findAll().stream().map(MesaDTO::new).toList();
     }
@@ -23,21 +24,22 @@ public class MesaService {
         return mesaRepository.findById(id).map(MesaDTO::new).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
     }
 
-    public void saveTable(MesaDTO mesaDTO) {
-        mesaRepository.save(mesaDTO.toEntity());
+    public MesaDTO saveTable(MesaDTO mesaDTO) {
+        return new MesaDTO(mesaRepository.save(mesaDTO.toEntity()));
     }
 
-    public void updateTable(Integer id, MesaDTO mesaDTO) {
-        Mesa findTable = mesaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
+    public MesaDTO updateTable(Integer id, MesaDTO mesaDTO) {
+        Mesa mesa = mesaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
 
         Mesa newTable = mesaDTO.toEntity();
-        BeanUtils.copyProperties(newTable, findTable, "id");
+        BeanUtils.copyProperties(newTable, mesa, "id");
 
-        mesaRepository.save(findTable);
+        return new MesaDTO(mesaRepository.save(mesaDTO.toEntity()));
     }
 
-    public void deleteTable(Integer id) {
+    public MesaDTO deleteTable(Integer id) {
         Mesa mesa = mesaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
         mesaRepository.delete(mesa);
+        return new MesaDTO(mesa);
     }
 }

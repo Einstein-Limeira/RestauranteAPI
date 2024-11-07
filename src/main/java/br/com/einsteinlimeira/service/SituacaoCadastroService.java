@@ -24,21 +24,24 @@ public class SituacaoCadastroService {
         return situacaoCadastroRepository.findById(id).map(SituacaoCadastroDTO::new).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
     }
 
-    public void save(SituacaoCadastroDTO situacaoCadastroDTO) {
-        situacaoCadastroRepository.save(situacaoCadastroDTO.toEntity());
+    public SituacaoCadastroDTO save(SituacaoCadastroDTO situacaoCadastroDTO) {
+        SituacaoCadastro situacaoCadastro = situacaoCadastroDTO.toEntity();
+        return new SituacaoCadastroDTO(situacaoCadastroRepository.save(situacaoCadastro));
     }
 
-    public void update(Integer id, SituacaoCadastroDTO situacaoCadastroDTO) {
-        SituacaoCadastro findSituacaoCadastro = situacaoCadastroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
+    public SituacaoCadastroDTO update(Integer id, SituacaoCadastroDTO situacaoCadastroDTO) {
+        SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
 
         SituacaoCadastro newSituacaoCadastro = situacaoCadastroDTO.toEntity();
-        BeanUtils.copyProperties(newSituacaoCadastro, findSituacaoCadastro, "id");
+        BeanUtils.copyProperties(newSituacaoCadastro, situacaoCadastro, "id");
 
-        situacaoCadastroRepository.save(findSituacaoCadastro);
+        return new SituacaoCadastroDTO(situacaoCadastroRepository.save(situacaoCadastro));
     }
 
-    public void delete(Integer id) {
+    public SituacaoCadastroDTO delete(Integer id) {
         SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
         situacaoCadastroRepository.delete(situacaoCadastro);
+
+        return new SituacaoCadastroDTO(situacaoCadastro);
     }
 }

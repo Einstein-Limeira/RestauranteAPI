@@ -29,27 +29,28 @@ public class UsuarioService {
         return usuarioRepository.findById(id).map(UsuarioDTO::new).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
     }
 
-    public void saveUser(UsuarioDTO usuarioDTO) {
-        usuarioRepository.save(usuarioDTO.toEntity());
+    public UsuarioDTO saveUser(UsuarioDTO usuarioDTO) {
+        Usuario usuario = usuarioDTO.toEntity();
+        return new UsuarioDTO(usuarioRepository.save(usuario));
     }
 
-    public void updateUser(Integer id, UsuarioDTO usuarioDTO) {
-        Usuario findUser = usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
+    public UsuarioDTO updateUser(Integer id, UsuarioDTO usuarioDTO) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
 
-        Usuario newUser = usuarioDTO.toEntity();
-        BeanUtils.copyProperties(newUser, findUser, "id");
+        Usuario newUsuario = usuarioDTO.toEntity();
+        BeanUtils.copyProperties(newUsuario, usuario, "id");
 
-        usuarioRepository.save(findUser);
+        return new UsuarioDTO(usuarioRepository.save(usuario));
     }
 
-    public void deleteUser(Integer id) {
+    public UsuarioDTO deleteUser(Integer id) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
 
         if (usuario.getSituacaoCadastro().getId() == 1) {
             SituacaoCadastro situacaoExcluido = situacaoCadastroRepository.getReferenceById(0);
 
             usuario.setSituacaoCadastro(situacaoExcluido);
-            usuarioRepository.save(usuario);
+            return new UsuarioDTO(usuarioRepository.save(usuario));
         }
         else {
             throw new RuntimeException("ERRO! O Usuário não pode ser deletado, pois o mesmo já se encontra excluído!");

@@ -25,17 +25,17 @@ public class MesaController {
     }
 
     @PostMapping
-    public void saveTable(@RequestBody @Valid MesaDTO mesaDTO) {
-        mesaService.saveTable(mesaDTO);
+    public MesaDTO saveTable(@RequestBody @Valid MesaDTO mesaDTO) {
+        return mesaService.saveTable(mesaDTO);
     }
 
     @PatchMapping("/{id}")
-    public void updateTable(@PathVariable Integer id, @RequestBody @Valid MesaDTO mesaDTO) {
-        mesaService.updateTable(id, mesaDTO);
+    public MesaDTO updateTable(@PathVariable Integer id, @RequestBody @Valid MesaDTO mesaDTO) {
+        return mesaService.updateTable(id, mesaDTO);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTable(@PathVariable Integer id) {
-        mesaService.deleteTable(id);
+    public MesaDTO deleteTable(@PathVariable Integer id) {
+        return mesaService.deleteTable(id);
     }
 }
