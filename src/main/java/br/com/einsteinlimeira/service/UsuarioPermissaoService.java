@@ -21,7 +21,7 @@ public class UsuarioPermissaoService {
     }
 
     public UsuarioPermissaoDTO getUserPermissionById(Integer id) {
-        return usuarioPermissaoRepository.findById(id).map(UsuarioPermissaoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Usuário", id));
+        return usuarioPermissaoRepository.findById(id).map(UsuarioPermissaoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
     }
 
     public UsuarioPermissaoDTO saveUserPermission(UsuarioPermissaoDTO usuarioPermissaoDTO) {
@@ -29,7 +29,7 @@ public class UsuarioPermissaoService {
     }
 
     public UsuarioPermissaoDTO updateUserPermission(Integer id, UsuarioPermissaoDTO usuarioPermissaoDTO) {
-        UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário", id));
+        UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
 
         UsuarioPermissao newUsuarioPermissao = usuarioPermissaoDTO.toEntity();
         BeanUtils.copyProperties(newUsuarioPermissao, usuarioPermissao, "id");
@@ -38,7 +38,7 @@ public class UsuarioPermissaoService {
     }
 
     public UsuarioPermissaoDTO deleteUserPermission(Integer id) {
-        UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário", id));
+        UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
         usuarioPermissaoRepository.delete(usuarioPermissao);
 
         return new UsuarioPermissaoDTO(usuarioPermissao);
