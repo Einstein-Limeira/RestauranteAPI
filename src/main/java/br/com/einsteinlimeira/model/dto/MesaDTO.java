@@ -30,6 +30,7 @@ public class MesaDTO {
 
     public Mesa toEntity() {
         Mesa mesa = new Mesa();
+        mesa.setId(this.id);
         mesa.setDescricao(descricao);
         mesa.setStatusMesa(this.statusMesa != null ? this.statusMesa.toEntity() : null);
         return mesa;

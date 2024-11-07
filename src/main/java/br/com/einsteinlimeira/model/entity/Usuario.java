@@ -31,4 +31,8 @@ public class Usuario {
     @Size(max = 40)
     @Column(name = "senha", length = 40, nullable = false)
     private String senha;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_situacaocadastro", nullable = false)
+    private SituacaoCadastro situacaoCadastro;
 }

@@ -14,27 +14,27 @@ public class MesaController {
     @Autowired
     private MesaService mesaService;
 
-    @GetMapping("v1")
+    @GetMapping
     public List<MesaDTO> findAll() {
         return mesaService.findAll();
     }
 
-    @GetMapping("v1/{id}")
+    @GetMapping("/{id}")
     public MesaDTO findById(@PathVariable Integer id) {
         return mesaService.findById(id);
     }
 
-    @PostMapping("v1")
+    @PostMapping
     public void saveTable(@RequestBody @Valid MesaDTO mesaDTO) {
         mesaService.saveTable(mesaDTO);
     }
 
-    @PatchMapping("v1/{id}")
+    @PatchMapping("/{id}")
     public void updateTable(@PathVariable Integer id, @RequestBody @Valid MesaDTO mesaDTO) {
         mesaService.updateTable(id, mesaDTO);
     }
 
-    @DeleteMapping("v1/{id}")
+    @DeleteMapping("/{id}")
     public void deleteTable(@PathVariable Integer id) {
         mesaService.deleteTable(id);
     }
