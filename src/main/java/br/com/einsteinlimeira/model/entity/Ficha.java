@@ -23,6 +23,6 @@ public class Ficha {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_status", nullable = false)
+    @JoinColumn(name = "id_statusficha", nullable = false)
     private Status status;
 }
