@@ -4,6 +4,8 @@ import br.com.einsteinlimeira.model.dto.UsuarioPermissaoDTO;
 import br.com.einsteinlimeira.service.UsuarioPermissaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,17 +28,20 @@ public class UsuarioPermissaoController {
     }
 
     @PostMapping
-    public UsuarioPermissaoDTO saveUserPermission(@RequestBody @Valid UsuarioPermissaoDTO usuarioPermissaoDTO) {
-        return usuarioPermissaoService.saveUserPermission(usuarioPermissaoDTO);
+    @Transactional
+    public ResponseEntity<UsuarioPermissaoDTO> saveUserPermission(@RequestBody @Valid UsuarioPermissaoDTO usuarioPermissaoDTO) {
+        return ResponseEntity.ok(usuarioPermissaoService.saveUserPermission(usuarioPermissaoDTO));
     }
 
     @PatchMapping("/{id}")
-    public UsuarioPermissaoDTO updateUserPermission(@PathVariable Integer id, @RequestBody @Valid UsuarioPermissaoDTO usuarioPermissaoDTO) {
-        return usuarioPermissaoService.updateUserPermission(id, usuarioPermissaoDTO);
+    @Transactional
+    public ResponseEntity<UsuarioPermissaoDTO> updateUserPermission(@PathVariable Integer id, @RequestBody @Valid UsuarioPermissaoDTO usuarioPermissaoDTO) {
+        return ResponseEntity.ok(usuarioPermissaoService.updateUserPermission(id, usuarioPermissaoDTO));
     }
 
     @DeleteMapping("/{id}")
-    public UsuarioPermissaoDTO deleteUserPermission(@PathVariable Integer id) {
-        return usuarioPermissaoService.deleteUserPermission(id);
+    @Transactional
+    public ResponseEntity<UsuarioPermissaoDTO> deleteUserPermission(@PathVariable Integer id) {
+        return ResponseEntity.ok(usuarioPermissaoService.deleteUserPermission(id));
     }
 }

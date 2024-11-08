@@ -4,6 +4,8 @@ import br.com.einsteinlimeira.model.dto.PermissaoDTO;
 import br.com.einsteinlimeira.service.PermissaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -25,17 +27,20 @@ public class PermissaoController {
     }
 
     @PostMapping
-    public PermissaoDTO savePermission(@RequestBody @Valid PermissaoDTO permissaoDTO) {
-        return permissaoService.savePermission(permissaoDTO);
+    @Transactional
+    public ResponseEntity<PermissaoDTO> savePermission(@RequestBody @Valid PermissaoDTO permissaoDTO) {
+        return ResponseEntity.ok(permissaoService.savePermission(permissaoDTO));
     }
 
     @PatchMapping("/{id}")
-    public PermissaoDTO updatePermission(@PathVariable Integer id, @RequestBody @Valid PermissaoDTO permissaoDTO) {
-        return permissaoService.updatePermission(id, permissaoDTO);
+    @Transactional
+    public ResponseEntity<PermissaoDTO> updatePermission(@PathVariable Integer id, @RequestBody @Valid PermissaoDTO permissaoDTO) {
+        return ResponseEntity.ok(permissaoService.updatePermission(id, permissaoDTO));
     }
 
     @DeleteMapping("/{id}")
-    public PermissaoDTO deletePermission(@PathVariable Integer id) {
-        return permissaoService.deletePermission(id);
+    @Transactional
+    public ResponseEntity<PermissaoDTO> deletePermission(@PathVariable Integer id) {
+        return ResponseEntity.ok(permissaoService.deletePermission(id));
     }
 }
