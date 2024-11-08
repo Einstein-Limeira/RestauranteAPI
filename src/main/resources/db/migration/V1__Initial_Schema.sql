@@ -1,4 +1,4 @@
-CREATE TABLE situacao_cadastro(
+CREATE TABLE situacaocadastro(
     id INT PRIMARY KEY,
     descricao VARCHAR(30) NOT NULL
 );
@@ -10,7 +10,7 @@ CREATE TABLE usuario(
     emailVARCHAR(50) UNIQUE NOT NULL,
     senha VARCHAR(40) NOT NULL,
     id_situacaocadastro INT NOT NULL,
-    FOREIGN KEY (id_situacaocadastro) REFERENCES situacao_cadastro(id)
+    FOREIGN KEY (id_situacaocadastro) REFERENCES situacaocadastro(id)
 );
 
 
@@ -29,7 +29,7 @@ CREATE TABLE usuariopermissao(
 );
 
 
-CREATE TABLE status_mesa(
+CREATE TABLE statusmesa(
     id INT PRIMARY KEY,
     descricao VARCHAR(30) NOT NULL
 );
@@ -39,7 +39,7 @@ CREATE TABLE mesa(
     id SERIAL PRIMARY KEY,
     descricao VARCHAR(40) NOT NULL,
     id_statusmesa INT NOT NULL,
-    FOREIGN KEY (id_statusmesa) REFERENCES status_mesa(id)
+    FOREIGN KEY (id_statusmesa) REFERENCES statusmesa(id)
 );
 
 
@@ -70,7 +70,7 @@ CREATE TABLE pedido(
     id SERIAL PRIMARY KEY,
     data DATE NOT NULL,
     id_status INT NOT NULL,
-    FOREIGN KEY (id_status) REFERENCES status id)
+    FOREIGN KEY (id_status) REFERENCES status(id)
 );
 
 
@@ -85,7 +85,7 @@ CREATE TABLE pedidoproduto(
 
 
 --INSERTS DE DADOS
-INSERT INTO situacao_cadastro(id, descricao)
+INSERT INTO situacaocadastro(id, descricao)
 VALUES (0, 'EXCLUIDO'),
        (1, 'ATIVO');
 
@@ -111,7 +111,7 @@ VALUES (1, 0),
        (4, 1);
 
 
-INSERT INTO status_mesa(id, descricao)
+INSERT INTO statusmesa(id, descricao)
 VALUES (0, 'OCUPADO'),
        (1, 'LIVRE');
 
