@@ -38,7 +38,9 @@ public class FichaService {
 
     public FichaDTO delete(Integer id) {
         Ficha ficha = fichaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ficha", id));
+
         fichaRepository.delete(ficha);
+
         return new FichaDTO(ficha);
     }
 }
