@@ -16,11 +16,11 @@ public class SituacaoCadastroService {
     private SituacaoCadastroRepository situacaoCadastroRepository;
 
 
-    public List<SituacaoCadastroDTO> getAll() {
+    public List<SituacaoCadastroDTO> findAll() {
         return situacaoCadastroRepository.findAll().stream().map(SituacaoCadastroDTO::new).toList();
     }
 
-    public SituacaoCadastroDTO getById(Integer id) {
+    public SituacaoCadastroDTO findById(Integer id) {
         return situacaoCadastroRepository.findById(id).map(SituacaoCadastroDTO::new).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
     }
 

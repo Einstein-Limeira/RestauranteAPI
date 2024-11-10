@@ -21,11 +21,11 @@ public class UsuarioService {
     private SituacaoCadastroRepository situacaoCadastroRepository;
 
 
-    public List<UsuarioDTO> getAllUsers() {
+    public List<UsuarioDTO> findAllUsers() {
         return usuarioRepository.findAll().stream().map(UsuarioDTO::new).toList();
     }
 
-    public UsuarioDTO getUserById(Integer id) {
+    public UsuarioDTO findUserById(Integer id) {
         return usuarioRepository.findById(id).map(UsuarioDTO::new).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
     }
 

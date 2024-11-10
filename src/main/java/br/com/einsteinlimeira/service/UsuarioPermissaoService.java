@@ -16,11 +16,11 @@ public class UsuarioPermissaoService {
     @Autowired
     private UsuarioPermissaoRepository usuarioPermissaoRepository;
 
-    public List<UsuarioPermissaoDTO> getAllUsersPermissions() {
+    public List<UsuarioPermissaoDTO> findAllUsersPermissions() {
         return usuarioPermissaoRepository.findAll().stream().map(UsuarioPermissaoDTO::new).toList();
     }
 
-    public UsuarioPermissaoDTO getUserPermissionById(Integer id) {
+    public UsuarioPermissaoDTO findUserPermissionById(Integer id) {
         return usuarioPermissaoRepository.findById(id).map(UsuarioPermissaoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
     }
 

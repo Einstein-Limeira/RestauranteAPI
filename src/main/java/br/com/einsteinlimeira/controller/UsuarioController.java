@@ -18,13 +18,13 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public List<UsuarioDTO> findAllUsers() {
-        return usuarioService.getAllUsers();
+    public ResponseEntity<List<UsuarioDTO>> getAllUsers() {
+        return ResponseEntity.ok(usuarioService.findAllUsers());
     }
 
     @GetMapping("/{id}")
-    public UsuarioDTO findUserById(@PathVariable Integer id) {
-        return usuarioService.getUserById(id);
+    public ResponseEntity<UsuarioDTO> getUserById(@PathVariable Integer id) {
+        return ResponseEntity.ok(usuarioService.findUserById(id));
     }
 
     @PostMapping

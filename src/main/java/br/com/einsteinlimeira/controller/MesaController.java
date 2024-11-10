@@ -17,13 +17,13 @@ public class MesaController {
     private MesaService mesaService;
 
     @GetMapping
-    public List<MesaDTO> findAll() {
-        return mesaService.findAll();
+    public ResponseEntity<List<MesaDTO>> getAll() {
+        return ResponseEntity.ok().body(mesaService.findAll());
     }
 
     @GetMapping("/{id}")
-    public MesaDTO findById(@PathVariable Integer id) {
-        return mesaService.findById(id);
+    public ResponseEntity<MesaDTO> getById(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(mesaService.findById(id));
     }
 
     @PostMapping

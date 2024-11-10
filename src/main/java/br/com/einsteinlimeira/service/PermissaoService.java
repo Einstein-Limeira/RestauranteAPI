@@ -16,11 +16,11 @@ public class PermissaoService {
     private PermissaoRepository permissaoRepository;
 
 
-    public List<PermissaoDTO> getAllPermissions() {
+    public List<PermissaoDTO> findAllPermissions() {
         return permissaoRepository.findAll().stream().map(PermissaoDTO::new).toList();
     }
 
-    public PermissaoDTO getPermissionById(Integer id) {
+    public PermissaoDTO findPermissionById(Integer id) {
         return permissaoRepository.findById(id).map(PermissaoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Permissão", id));
     }
 

@@ -18,13 +18,13 @@ public class UsuarioPermissaoController {
     private UsuarioPermissaoService usuarioPermissaoService;
 
     @GetMapping
-    public List<UsuarioPermissaoDTO> getAllUsersPermissions() {
-        return usuarioPermissaoService.getAllUsersPermissions();
+    public ResponseEntity<List<UsuarioPermissaoDTO>> getAllUsersPermissions() {
+        return ResponseEntity.ok(usuarioPermissaoService.findAllUsersPermissions());
     }
 
     @GetMapping("/{id}")
-    public UsuarioPermissaoDTO getUserPermissionById(@PathVariable Integer id) {
-        return usuarioPermissaoService.getUserPermissionById(id);
+    public ResponseEntity<UsuarioPermissaoDTO> getUserPermissionById(@PathVariable Integer id) {
+        return ResponseEntity.ok(usuarioPermissaoService.findUserPermissionById(id));
     }
 
     @PostMapping

@@ -17,13 +17,13 @@ public class PermissaoController {
     private PermissaoService permissaoService;
 
     @GetMapping
-    public List<PermissaoDTO> getAllPermissions() {
-        return permissaoService.getAllPermissions();
+    public ResponseEntity<List<PermissaoDTO>> getAllPermissions() {
+        return ResponseEntity.ok(permissaoService.findAllPermissions());
     }
 
     @GetMapping("/{id}")
-    public PermissaoDTO getPermissionById(@PathVariable Integer id) {
-        return permissaoService.getPermissionById(id);
+    public ResponseEntity<PermissaoDTO> getPermissionById(@PathVariable Integer id) {
+        return ResponseEntity.ok(permissaoService.findPermissionById(id));
     }
 
     @PostMapping

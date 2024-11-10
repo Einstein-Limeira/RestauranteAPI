@@ -17,13 +17,13 @@ public class SituacaoCadastroController {
     private SituacaoCadastroService situacaoCadastroService;
 
     @GetMapping
-    public List<SituacaoCadastroDTO> getAll() {
-        return situacaoCadastroService.getAll();
+    public ResponseEntity<List<SituacaoCadastroDTO>> getAll() {
+        return ResponseEntity.ok(situacaoCadastroService.findAll());
     }
 
     @GetMapping("/{id}")
-    public SituacaoCadastroDTO getById(@PathVariable Integer id) {
-        return situacaoCadastroService.getById(id);
+    public ResponseEntity<SituacaoCadastroDTO> getById(@PathVariable Integer id) {
+        return ResponseEntity.ok(situacaoCadastroService.findById(id));
     }
 
     @PostMapping
