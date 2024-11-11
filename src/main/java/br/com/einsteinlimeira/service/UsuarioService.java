@@ -20,7 +20,6 @@ public class UsuarioService {
     @Autowired
     private SituacaoCadastroRepository situacaoCadastroRepository;
 
-
     public List<UsuarioDTO> findAllUsers() {
         return usuarioRepository.findAll().stream().map(UsuarioDTO::new).toList();
     }

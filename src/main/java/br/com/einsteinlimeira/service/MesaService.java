@@ -15,7 +15,6 @@ public class MesaService {
     @Autowired
     private MesaRepository mesaRepository;
 
-
     public List<MesaDTO> findAll() {
         return mesaRepository.findAll().stream().map(MesaDTO::new).toList();
     }

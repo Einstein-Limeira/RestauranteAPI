@@ -40,6 +40,7 @@ public class SituacaoCadastroService {
 
     public SituacaoCadastroDTO delete(Integer id) {
         SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
+
         situacaoCadastroRepository.delete(situacaoCadastro);
 
         return new SituacaoCadastroDTO(situacaoCadastro);

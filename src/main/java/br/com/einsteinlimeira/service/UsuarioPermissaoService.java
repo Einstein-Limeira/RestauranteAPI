@@ -7,7 +7,6 @@ import br.com.einsteinlimeira.repository.UsuarioPermissaoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -39,6 +38,7 @@ public class UsuarioPermissaoService {
 
     public UsuarioPermissaoDTO deleteUserPermission(Integer id) {
         UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
+
         usuarioPermissaoRepository.delete(usuarioPermissao);
 
         return new UsuarioPermissaoDTO(usuarioPermissao);

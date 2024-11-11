@@ -39,7 +39,9 @@ public class PermissaoService {
 
     public PermissaoDTO deletePermission(Integer id) {
         Permissao permissao = permissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Permissão", id));
+
         permissaoRepository.delete(permissao);
+
         return new PermissaoDTO(permissao);
     }
 }
