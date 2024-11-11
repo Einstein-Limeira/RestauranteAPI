@@ -38,7 +38,9 @@ public class MesaService {
 
     public MesaDTO deleteTable(Integer id) {
         Mesa mesa = mesaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
+
         mesaRepository.delete(mesa);
+
         return new MesaDTO(mesa);
     }
 }
