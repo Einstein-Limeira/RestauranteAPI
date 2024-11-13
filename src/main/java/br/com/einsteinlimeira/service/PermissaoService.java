@@ -15,7 +15,6 @@ public class PermissaoService {
     @Autowired
     private PermissaoRepository permissaoRepository;
 
-
     public List<PermissaoDTO> findAllPermissions() {
         return permissaoRepository.findAll().stream().map(PermissaoDTO::new).toList();
     }
@@ -39,9 +38,7 @@ public class PermissaoService {
 
     public PermissaoDTO deletePermission(Integer id) {
         Permissao permissao = permissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Permissão", id));
-
         permissaoRepository.delete(permissao);
-
         return new PermissaoDTO(permissao);
     }
 }

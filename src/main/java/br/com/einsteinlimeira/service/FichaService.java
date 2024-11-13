@@ -15,19 +15,19 @@ public class FichaService {
     @Autowired
     private FichaRepository fichaRepository;
 
-    public List<FichaDTO> findAll() {
+    public List<FichaDTO> findAllTickets() {
         return fichaRepository.findAll().stream().map(FichaDTO::new).toList();
     }
 
-    public FichaDTO findById(Integer id) {
+    public FichaDTO findTicketById(Integer id) {
         return fichaRepository.findById(id).map(FichaDTO::new).orElseThrow(() -> new ResourceNotFoundException("Ficha", id));
     }
 
-    public FichaDTO save(FichaDTO fichaDTO) {
+    public FichaDTO saveTicket(FichaDTO fichaDTO) {
         return new FichaDTO(fichaRepository.save(fichaDTO.toEntity()));
     }
 
-    public FichaDTO update(Integer id, FichaDTO fichaDTO) {
+    public FichaDTO updateTicket(Integer id, FichaDTO fichaDTO) {
         Ficha ficha = fichaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ficha", id));
 
         Ficha newFicha = fichaDTO.toEntity();
@@ -36,11 +36,9 @@ public class FichaService {
         return new FichaDTO(fichaRepository.save(fichaDTO.toEntity()));
     }
 
-    public FichaDTO delete(Integer id) {
+    public FichaDTO deleteTicket(Integer id) {
         Ficha ficha = fichaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ficha", id));
-
         fichaRepository.delete(ficha);
-
         return new FichaDTO(ficha);
     }
 }

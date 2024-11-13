@@ -15,19 +15,19 @@ public class PedidoProdutoService {
     @Autowired
     private PedidoProdutoRepository pedidoProdutoRepository;
 
-    public List<PedidoProdutoDTO> findAll() {
+    public List<PedidoProdutoDTO> findAllProductsOrders() {
         return pedidoProdutoRepository.findAll().stream().map(PedidoProdutoDTO::new).toList();
     }
 
-    public PedidoProdutoDTO findById(Integer id) {
+    public PedidoProdutoDTO findProductOrderById(Integer id) {
         return pedidoProdutoRepository.findById(id).map(PedidoProdutoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
     }
 
-    public PedidoProdutoDTO save(PedidoProdutoDTO pedidoProdutoDTO) {
+    public PedidoProdutoDTO saveProductOrder(PedidoProdutoDTO pedidoProdutoDTO) {
         return new PedidoProdutoDTO(pedidoProdutoRepository.save(pedidoProdutoDTO.toEntity()));
     }
 
-    public PedidoProdutoDTO update(Integer id, PedidoProdutoDTO pedidoProdutoDTO) {
+    public PedidoProdutoDTO updateProductOrder(Integer id, PedidoProdutoDTO pedidoProdutoDTO) {
         PedidoProduto pedidoProduto = pedidoProdutoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
 
         PedidoProduto newPedidoProduto = pedidoProdutoDTO.toEntity();
@@ -36,11 +36,9 @@ public class PedidoProdutoService {
         return new PedidoProdutoDTO(pedidoProdutoRepository.save(pedidoProduto));
     }
 
-    public PedidoProdutoDTO delete(Integer id) {
+    public PedidoProdutoDTO deleteProductOrder(Integer id) {
         PedidoProduto pedidoProduto = pedidoProdutoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
-
         pedidoProdutoRepository.delete(pedidoProduto);
-
         return new PedidoProdutoDTO(pedidoProduto);
     }
 }

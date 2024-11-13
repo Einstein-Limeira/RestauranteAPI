@@ -15,11 +15,11 @@ public class MesaService {
     @Autowired
     private MesaRepository mesaRepository;
 
-    public List<MesaDTO> findAll() {
+    public List<MesaDTO> findAllTables() {
         return mesaRepository.findAll().stream().map(MesaDTO::new).toList();
     }
 
-    public MesaDTO findById(Integer id) {
+    public MesaDTO findTableById(Integer id) {
         return mesaRepository.findById(id).map(MesaDTO::new).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
     }
 
@@ -38,9 +38,7 @@ public class MesaService {
 
     public MesaDTO deleteTable(Integer id) {
         Mesa mesa = mesaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
-
         mesaRepository.delete(mesa);
-
         return new MesaDTO(mesa);
     }
 }

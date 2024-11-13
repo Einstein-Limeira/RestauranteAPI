@@ -38,9 +38,7 @@ public class ProdutoService {
 
     public ProdutoDTO deleteProduct(Integer id) {
         Produto produto = produtoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Produto", id));
-
         produtoRepository.delete(produto);
-
         return new ProdutoDTO(produto);
     }
 }

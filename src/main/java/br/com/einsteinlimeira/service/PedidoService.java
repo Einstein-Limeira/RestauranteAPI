@@ -15,19 +15,19 @@ public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    public List<PedidoDTO> findAll() {
+    public List<PedidoDTO> findAllOrders() {
         return pedidoRepository.findAll().stream().map(PedidoDTO::new).toList();
     }
 
-    public PedidoDTO findById(Integer id) {
+    public PedidoDTO findOrderById(Integer id) {
         return pedidoRepository.findById(id).map(PedidoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
     }
 
-    public PedidoDTO save(PedidoDTO pedidoDTO) {
+    public PedidoDTO saveOrder(PedidoDTO pedidoDTO) {
         return new PedidoDTO(pedidoRepository.save(pedidoDTO.toEntity()));
     }
 
-    public PedidoDTO update(Integer id, PedidoDTO pedidoDTO) {
+    public PedidoDTO updateOrder(Integer id, PedidoDTO pedidoDTO) {
         Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
 
         Pedido newPedido = pedidoDTO.toEntity();
@@ -36,11 +36,9 @@ public class PedidoService {
         return new PedidoDTO(pedidoRepository.save(pedido));
     }
 
-    public PedidoDTO delete(Integer id) {
+    public PedidoDTO deleteOrder(Integer id) {
         Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
-
         pedidoRepository.delete(pedido);
-
         return new PedidoDTO(pedido);
     }
 }

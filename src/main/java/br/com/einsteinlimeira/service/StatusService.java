@@ -14,22 +14,22 @@ public class StatusService {
     @Autowired
     private StatusRepository statusRepository;
 
-    public List<StatusDTO> findAll() {
+    public List<StatusDTO> findAllStatus() {
         return statusRepository.findAll().stream().map(StatusDTO::new).toList();
     }
 
-    public StatusDTO findById(Integer id) {
+    public StatusDTO findStatusById(Integer id) {
         Status status = statusRepository.getReferenceById(id);
         return new StatusDTO(status);
     }
 
-    public StatusDTO save(StatusDTO statusDTO) {
+    public StatusDTO saveStatus(StatusDTO statusDTO) {
         Status status = statusDTO.toEntity();
         status = statusRepository.save(status);
         return new StatusDTO(status);
     }
 
-    public StatusDTO update(Integer id, StatusDTO statusDTO) {
+    public StatusDTO updateStatus(Integer id, StatusDTO statusDTO) {
         Status status = statusRepository.getReferenceById(id);
 
         Status newStatus = statusDTO.toEntity();
@@ -38,7 +38,7 @@ public class StatusService {
         return new StatusDTO(statusRepository.save(status));
     }
 
-    public StatusDTO delete(Integer id) {
+    public StatusDTO deleteStatus(Integer id) {
         Status status = statusRepository.getReferenceById(id);
         statusRepository.delete(status);
         return new StatusDTO(status);

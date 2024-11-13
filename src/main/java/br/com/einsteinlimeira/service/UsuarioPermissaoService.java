@@ -38,9 +38,7 @@ public class UsuarioPermissaoService {
 
     public UsuarioPermissaoDTO deleteUserPermission(Integer id) {
         UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
-
         usuarioPermissaoRepository.delete(usuarioPermissao);
-
         return new UsuarioPermissaoDTO(usuarioPermissao);
     }
 }

@@ -17,30 +17,30 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @GetMapping
-    public ResponseEntity<List<PedidoDTO>> getAll() {
-        return ResponseEntity.ok(pedidoService.findAll());
+    public ResponseEntity<List<PedidoDTO>> getAllOrders() {
+        return ResponseEntity.ok(pedidoService.findAllOrders());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoDTO> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(pedidoService.findById(id));
+    public ResponseEntity<PedidoDTO> getOrderById(@PathVariable Integer id) {
+        return ResponseEntity.ok(pedidoService.findOrderById(id));
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<PedidoDTO> save(@RequestBody @Valid PedidoDTO pedidoDTO) {
-        return ResponseEntity.ok(pedidoService.save(pedidoDTO));
+    public ResponseEntity<PedidoDTO> saveOrder(@RequestBody @Valid PedidoDTO pedidoDTO) {
+        return ResponseEntity.ok(pedidoService.saveOrder(pedidoDTO));
     }
 
     @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<PedidoDTO> update(@PathVariable Integer id, @RequestBody @Valid PedidoDTO pedidoDTO) {
-        return ResponseEntity.ok(pedidoService.update(id, pedidoDTO));
+    public ResponseEntity<PedidoDTO> updateOrder(@PathVariable Integer id, @RequestBody @Valid PedidoDTO pedidoDTO) {
+        return ResponseEntity.ok(pedidoService.updateOrder(id, pedidoDTO));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<PedidoDTO> delete(@PathVariable Integer id) {
-        return ResponseEntity.ok(pedidoService.delete(id));
+    public ResponseEntity<PedidoDTO> deleteOrder(@PathVariable Integer id) {
+        return ResponseEntity.ok(pedidoService.deleteOrder(id));
     }
 }

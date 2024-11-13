@@ -17,30 +17,30 @@ public class PedidoProdutoController {
     private PedidoProdutoService pedidoProdutoService;
 
     @GetMapping
-    public ResponseEntity<List<PedidoProdutoDTO>> getAll() {
-        return ResponseEntity.ok(pedidoProdutoService.findAll());
+    public ResponseEntity<List<PedidoProdutoDTO>> getAllProductsOrders() {
+        return ResponseEntity.ok(pedidoProdutoService.findAllProductsOrders());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PedidoProdutoDTO> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(pedidoProdutoService.findById(id));
+    public ResponseEntity<PedidoProdutoDTO> getProductOrderById(@PathVariable Integer id) {
+        return ResponseEntity.ok(pedidoProdutoService.findProductOrderById(id));
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<PedidoProdutoDTO> save(@RequestBody @Valid PedidoProdutoDTO pedidoProdutoDTO) {
-        return ResponseEntity.ok(pedidoProdutoService.save(pedidoProdutoDTO));
+    public ResponseEntity<PedidoProdutoDTO> saveProductOrder(@RequestBody @Valid PedidoProdutoDTO pedidoProdutoDTO) {
+        return ResponseEntity.ok(pedidoProdutoService.saveProductOrder(pedidoProdutoDTO));
     }
 
     @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<PedidoProdutoDTO> update(@PathVariable Integer id, @RequestBody @Valid PedidoProdutoDTO pedidoProdutoDTO) {
-        return ResponseEntity.ok(pedidoProdutoService.update(id, pedidoProdutoDTO));
+    public ResponseEntity<PedidoProdutoDTO> updateProductOrder(@PathVariable Integer id, @RequestBody @Valid PedidoProdutoDTO pedidoProdutoDTO) {
+        return ResponseEntity.ok(pedidoProdutoService.updateProductOrder(id, pedidoProdutoDTO));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<PedidoProdutoDTO> delete(@PathVariable Integer id) {
-        return ResponseEntity.ok(pedidoProdutoService.delete(id));
+    public ResponseEntity<PedidoProdutoDTO> deleteProductOrder(@PathVariable Integer id) {
+        return ResponseEntity.ok(pedidoProdutoService.deleteProductOrder(id));
     }
 }

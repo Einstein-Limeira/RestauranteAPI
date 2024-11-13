@@ -17,30 +17,30 @@ public class FichaController {
     private FichaService fichaService;
 
     @GetMapping
-    public ResponseEntity<List<FichaDTO>> getAll() {
-        return ResponseEntity.ok().body(fichaService.findAll());
+    public ResponseEntity<List<FichaDTO>> getAllTickets() {
+        return ResponseEntity.ok().body(fichaService.findAllTickets());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FichaDTO> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(fichaService.findById(id));
+    public ResponseEntity<FichaDTO> getTicketById(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(fichaService.findTicketById(id));
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<FichaDTO> save(@RequestBody @Valid FichaDTO fichaDTO) {
-        return ResponseEntity.ok().body(fichaService.save(fichaDTO));
+    public ResponseEntity<FichaDTO> saveTicket(@RequestBody @Valid FichaDTO fichaDTO) {
+        return ResponseEntity.ok().body(fichaService.saveTicket(fichaDTO));
     }
 
     @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<FichaDTO> update(@PathVariable Integer id, @RequestBody @Valid FichaDTO fichaDTO) {
-        return ResponseEntity.ok().body(fichaService.update(id, fichaDTO));
+    public ResponseEntity<FichaDTO> updateTicket(@PathVariable Integer id, @RequestBody @Valid FichaDTO fichaDTO) {
+        return ResponseEntity.ok().body(fichaService.updateTicket(id, fichaDTO));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<FichaDTO> delete(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(fichaService.delete(id));
+    public ResponseEntity<FichaDTO> deleteTicket(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(fichaService.deleteTicket(id));
     }
 }

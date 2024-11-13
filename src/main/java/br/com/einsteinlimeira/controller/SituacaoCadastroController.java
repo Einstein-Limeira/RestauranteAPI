@@ -17,30 +17,30 @@ public class SituacaoCadastroController {
     private SituacaoCadastroService situacaoCadastroService;
 
     @GetMapping
-    public ResponseEntity<List<SituacaoCadastroDTO>> getAll() {
-        return ResponseEntity.ok(situacaoCadastroService.findAll());
+    public ResponseEntity<List<SituacaoCadastroDTO>> getAllAccountsStatus() {
+        return ResponseEntity.ok(situacaoCadastroService.findAllAccountsStatus());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SituacaoCadastroDTO> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(situacaoCadastroService.findById(id));
+    public ResponseEntity<SituacaoCadastroDTO> getAccountStatusById(@PathVariable Integer id) {
+        return ResponseEntity.ok(situacaoCadastroService.findAccountStatusById(id));
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<SituacaoCadastroDTO> save(@RequestBody @Valid SituacaoCadastroDTO situacaoCadastroDTO) {
-        return ResponseEntity.ok(situacaoCadastroService.save(situacaoCadastroDTO));
+    public ResponseEntity<SituacaoCadastroDTO> saveAccountStatus(@RequestBody @Valid SituacaoCadastroDTO situacaoCadastroDTO) {
+        return ResponseEntity.ok(situacaoCadastroService.saveAccountStatus(situacaoCadastroDTO));
     }
 
     @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<SituacaoCadastroDTO> update(@PathVariable Integer id, @RequestBody @Valid SituacaoCadastroDTO situacaoCadastroDTO) {
-        return ResponseEntity.ok(situacaoCadastroService.update(id, situacaoCadastroDTO));
+    public ResponseEntity<SituacaoCadastroDTO> updateAccountStatus(@PathVariable Integer id, @RequestBody @Valid SituacaoCadastroDTO situacaoCadastroDTO) {
+        return ResponseEntity.ok(situacaoCadastroService.updateAccountStatus(id, situacaoCadastroDTO));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<SituacaoCadastroDTO> delete(@PathVariable Integer id) {
-        return ResponseEntity.ok(situacaoCadastroService.delete(id));
+    public ResponseEntity<SituacaoCadastroDTO> deleteAccountStatus(@PathVariable Integer id) {
+        return ResponseEntity.ok(situacaoCadastroService.deleteAccountStatus(id));
     }
 }

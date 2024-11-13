@@ -15,21 +15,20 @@ public class SituacaoCadastroService {
     @Autowired
     private SituacaoCadastroRepository situacaoCadastroRepository;
 
-
-    public List<SituacaoCadastroDTO> findAll() {
+    public List<SituacaoCadastroDTO> findAllAccountsStatus() {
         return situacaoCadastroRepository.findAll().stream().map(SituacaoCadastroDTO::new).toList();
     }
 
-    public SituacaoCadastroDTO findById(Integer id) {
+    public SituacaoCadastroDTO findAccountStatusById(Integer id) {
         return situacaoCadastroRepository.findById(id).map(SituacaoCadastroDTO::new).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
     }
 
-    public SituacaoCadastroDTO save(SituacaoCadastroDTO situacaoCadastroDTO) {
+    public SituacaoCadastroDTO saveAccountStatus(SituacaoCadastroDTO situacaoCadastroDTO) {
         SituacaoCadastro situacaoCadastro = situacaoCadastroDTO.toEntity();
         return new SituacaoCadastroDTO(situacaoCadastroRepository.save(situacaoCadastro));
     }
 
-    public SituacaoCadastroDTO update(Integer id, SituacaoCadastroDTO situacaoCadastroDTO) {
+    public SituacaoCadastroDTO updateAccountStatus(Integer id, SituacaoCadastroDTO situacaoCadastroDTO) {
         SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
 
         SituacaoCadastro newSituacaoCadastro = situacaoCadastroDTO.toEntity();
@@ -38,11 +37,9 @@ public class SituacaoCadastroService {
         return new SituacaoCadastroDTO(situacaoCadastroRepository.save(situacaoCadastro));
     }
 
-    public SituacaoCadastroDTO delete(Integer id) {
+    public SituacaoCadastroDTO deleteAccountStatus(Integer id) {
         SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
-
         situacaoCadastroRepository.delete(situacaoCadastro);
-
         return new SituacaoCadastroDTO(situacaoCadastro);
     }
 }

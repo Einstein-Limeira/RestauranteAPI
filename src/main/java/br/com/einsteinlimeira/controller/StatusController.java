@@ -17,30 +17,30 @@ public class StatusController {
     private StatusService statusService;
 
     @GetMapping
-    public ResponseEntity<List<StatusDTO>> getAll() {
-        return ResponseEntity.ok(statusService.findAll());
+    public ResponseEntity<List<StatusDTO>> getAllStatus() {
+        return ResponseEntity.ok(statusService.findAllStatus());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StatusDTO> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(statusService.findById(id));
+    public ResponseEntity<StatusDTO> getStatusById(@PathVariable Integer id) {
+        return ResponseEntity.ok(statusService.findStatusById(id));
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<StatusDTO> save(@RequestBody @Valid StatusDTO statusDTO) {
-        return ResponseEntity.ok(statusService.save(statusDTO));
+    public ResponseEntity<StatusDTO> saveStatus(@RequestBody @Valid StatusDTO statusDTO) {
+        return ResponseEntity.ok(statusService.saveStatus(statusDTO));
     }
 
     @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<StatusDTO> update(@PathVariable Integer id, @RequestBody @Valid StatusDTO statusDTO) {
-        return ResponseEntity.ok(statusService.update(id, statusDTO));
+    public ResponseEntity<StatusDTO> updateStatus(@PathVariable Integer id, @RequestBody @Valid StatusDTO statusDTO) {
+        return ResponseEntity.ok(statusService.updateStatus(id, statusDTO));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<StatusDTO> delete(@PathVariable Integer id) {
-        return ResponseEntity.ok(statusService.delete(id));
+    public ResponseEntity<StatusDTO> deleteStatus(@PathVariable Integer id) {
+        return ResponseEntity.ok(statusService.deleteStatus(id));
     }
 }
