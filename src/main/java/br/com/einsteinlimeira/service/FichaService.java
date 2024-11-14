@@ -1,6 +1,5 @@
 package br.com.einsteinlimeira.service;
 
-import br.com.einsteinlimeira.exceptions.ResourceNotFoundException;
 import br.com.einsteinlimeira.model.dto.FichaDTO;
 import br.com.einsteinlimeira.model.entity.Ficha;
 import br.com.einsteinlimeira.repository.FichaRepository;
@@ -20,7 +19,8 @@ public class FichaService {
     }
 
     public FichaDTO findTicketById(Integer id) {
-        return fichaRepository.findById(id).map(FichaDTO::new).orElseThrow(() -> new ResourceNotFoundException("Ficha", id));
+        Ficha findTicket = fichaRepository.getReferenceById(id);
+        return new FichaDTO(findTicket);
     }
 
     public FichaDTO saveTicket(FichaDTO fichaDTO) {
@@ -28,7 +28,7 @@ public class FichaService {
     }
 
     public FichaDTO updateTicket(Integer id, FichaDTO fichaDTO) {
-        Ficha ficha = fichaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ficha", id));
+        Ficha ficha = fichaRepository.getReferenceById(id);
 
         Ficha newFicha = fichaDTO.toEntity();
         BeanUtils.copyProperties(newFicha, ficha, "id");
@@ -37,7 +37,7 @@ public class FichaService {
     }
 
     public FichaDTO deleteTicket(Integer id) {
-        Ficha ficha = fichaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Ficha", id));
+        Ficha ficha = fichaRepository.getReferenceById(id);
         fichaRepository.delete(ficha);
         return new FichaDTO(ficha);
     }

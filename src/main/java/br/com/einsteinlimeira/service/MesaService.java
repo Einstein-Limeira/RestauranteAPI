@@ -1,6 +1,5 @@
 package br.com.einsteinlimeira.service;
 
-import br.com.einsteinlimeira.exceptions.ResourceNotFoundException;
 import br.com.einsteinlimeira.model.dto.MesaDTO;
 import br.com.einsteinlimeira.model.entity.Mesa;
 import br.com.einsteinlimeira.repository.MesaRepository;
@@ -20,7 +19,8 @@ public class MesaService {
     }
 
     public MesaDTO findTableById(Integer id) {
-        return mesaRepository.findById(id).map(MesaDTO::new).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
+        Mesa findTable = mesaRepository.getReferenceById(id);
+        return new MesaDTO(findTable);
     }
 
     public MesaDTO saveTable(MesaDTO mesaDTO) {
@@ -28,7 +28,7 @@ public class MesaService {
     }
 
     public MesaDTO updateTable(Integer id, MesaDTO mesaDTO) {
-        Mesa mesa = mesaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
+        Mesa mesa = mesaRepository.getReferenceById(id);
 
         Mesa newTable = mesaDTO.toEntity();
         BeanUtils.copyProperties(newTable, mesa, "id");
@@ -37,7 +37,7 @@ public class MesaService {
     }
 
     public MesaDTO deleteTable(Integer id) {
-        Mesa mesa = mesaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Mesa", id));
+        Mesa mesa = mesaRepository.getReferenceById(id);
         mesaRepository.delete(mesa);
         return new MesaDTO(mesa);
     }

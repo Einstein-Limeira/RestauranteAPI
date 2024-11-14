@@ -1,6 +1,5 @@
 package br.com.einsteinlimeira.service;
 
-import br.com.einsteinlimeira.exceptions.ResourceNotFoundException;
 import br.com.einsteinlimeira.model.dto.UsuarioDTO;
 import br.com.einsteinlimeira.model.entity.SituacaoCadastro;
 import br.com.einsteinlimeira.model.entity.Usuario;
@@ -25,7 +24,8 @@ public class UsuarioService {
     }
 
     public UsuarioDTO findUserById(Integer id) {
-        return usuarioRepository.findById(id).map(UsuarioDTO::new).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
+        Usuario findUser = usuarioRepository.getReferenceById(id);
+        return new UsuarioDTO(findUser);
     }
 
     public UsuarioDTO saveUser(UsuarioDTO usuarioDTO) {
@@ -34,7 +34,7 @@ public class UsuarioService {
     }
 
     public UsuarioDTO updateUser(Integer id, UsuarioDTO usuarioDTO) {
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
+        Usuario usuario = usuarioRepository.getReferenceById(id);
 
         Usuario newUsuario = usuarioDTO.toEntity();
         BeanUtils.copyProperties(newUsuario, usuario, "id");
@@ -43,7 +43,7 @@ public class UsuarioService {
     }
 
     public UsuarioDTO deleteUser(Integer id) {
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
+        Usuario usuario = usuarioRepository.getReferenceById(id);
 
         if (usuario.getSituacaoCadastro().getId() == 1) {
             SituacaoCadastro situacaoExcluido = situacaoCadastroRepository.getReferenceById(0);

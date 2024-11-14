@@ -1,6 +1,5 @@
 package br.com.einsteinlimeira.service;
 
-import br.com.einsteinlimeira.exceptions.ResourceNotFoundException;
 import br.com.einsteinlimeira.model.dto.SituacaoCadastroDTO;
 import br.com.einsteinlimeira.model.entity.SituacaoCadastro;
 import br.com.einsteinlimeira.repository.SituacaoCadastroRepository;
@@ -20,7 +19,8 @@ public class SituacaoCadastroService {
     }
 
     public SituacaoCadastroDTO findAccountStatusById(Integer id) {
-        return situacaoCadastroRepository.findById(id).map(SituacaoCadastroDTO::new).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
+        SituacaoCadastro findAccountStatus = situacaoCadastroRepository.getReferenceById(id);
+        return new SituacaoCadastroDTO(findAccountStatus);
     }
 
     public SituacaoCadastroDTO saveAccountStatus(SituacaoCadastroDTO situacaoCadastroDTO) {
@@ -29,7 +29,7 @@ public class SituacaoCadastroService {
     }
 
     public SituacaoCadastroDTO updateAccountStatus(Integer id, SituacaoCadastroDTO situacaoCadastroDTO) {
-        SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
+        SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.getReferenceById(id);
 
         SituacaoCadastro newSituacaoCadastro = situacaoCadastroDTO.toEntity();
         BeanUtils.copyProperties(newSituacaoCadastro, situacaoCadastro, "id");
@@ -38,7 +38,7 @@ public class SituacaoCadastroService {
     }
 
     public SituacaoCadastroDTO deleteAccountStatus(Integer id) {
-        SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Situação Cadastro", id));
+        SituacaoCadastro situacaoCadastro = situacaoCadastroRepository.getReferenceById(id);
         situacaoCadastroRepository.delete(situacaoCadastro);
         return new SituacaoCadastroDTO(situacaoCadastro);
     }

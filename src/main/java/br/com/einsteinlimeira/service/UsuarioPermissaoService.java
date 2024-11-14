@@ -1,6 +1,5 @@
 package br.com.einsteinlimeira.service;
 
-import br.com.einsteinlimeira.exceptions.ResourceNotFoundException;
 import br.com.einsteinlimeira.model.dto.UsuarioPermissaoDTO;
 import br.com.einsteinlimeira.model.entity.UsuarioPermissao;
 import br.com.einsteinlimeira.repository.UsuarioPermissaoRepository;
@@ -20,7 +19,8 @@ public class UsuarioPermissaoService {
     }
 
     public UsuarioPermissaoDTO findUserPermissionById(Integer id) {
-        return usuarioPermissaoRepository.findById(id).map(UsuarioPermissaoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
+        UsuarioPermissao findUserPermission = usuarioPermissaoRepository.getReferenceById(id);
+        return new UsuarioPermissaoDTO(findUserPermission);
     }
 
     public UsuarioPermissaoDTO saveUserPermission(UsuarioPermissaoDTO usuarioPermissaoDTO) {
@@ -28,7 +28,7 @@ public class UsuarioPermissaoService {
     }
 
     public UsuarioPermissaoDTO updateUserPermission(Integer id, UsuarioPermissaoDTO usuarioPermissaoDTO) {
-        UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
+        UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.getReferenceById(id);
 
         UsuarioPermissao newUsuarioPermissao = usuarioPermissaoDTO.toEntity();
         BeanUtils.copyProperties(newUsuarioPermissao, usuarioPermissao, "id");
@@ -37,7 +37,7 @@ public class UsuarioPermissaoService {
     }
 
     public UsuarioPermissaoDTO deleteUserPermission(Integer id) {
-        UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário Permissão", id));
+        UsuarioPermissao usuarioPermissao = usuarioPermissaoRepository.getReferenceById(id);
         usuarioPermissaoRepository.delete(usuarioPermissao);
         return new UsuarioPermissaoDTO(usuarioPermissao);
     }

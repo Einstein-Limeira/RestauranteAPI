@@ -1,6 +1,5 @@
 package br.com.einsteinlimeira.service;
 
-import br.com.einsteinlimeira.exceptions.ResourceNotFoundException;
 import br.com.einsteinlimeira.model.dto.PermissaoDTO;
 import br.com.einsteinlimeira.model.entity.Permissao;
 import br.com.einsteinlimeira.repository.PermissaoRepository;
@@ -20,7 +19,8 @@ public class PermissaoService {
     }
 
     public PermissaoDTO findPermissionById(Integer id) {
-        return permissaoRepository.findById(id).map(PermissaoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Permissão", id));
+        Permissao findPermission = permissaoRepository.getReferenceById(id);
+        return new PermissaoDTO(findPermission);
     }
 
     public PermissaoDTO savePermission(PermissaoDTO permissaoDTO) {
@@ -28,7 +28,7 @@ public class PermissaoService {
     }
 
     public PermissaoDTO updatePermission(Integer id, PermissaoDTO permissaoDTO) {
-        Permissao permissao = permissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Permissão", id));
+        Permissao permissao = permissaoRepository.getReferenceById(id);
 
         Permissao newPermission = permissaoDTO.toEntity();
         BeanUtils.copyProperties(newPermission, permissao, "id");
@@ -37,7 +37,7 @@ public class PermissaoService {
     }
 
     public PermissaoDTO deletePermission(Integer id) {
-        Permissao permissao = permissaoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Permissão", id));
+        Permissao permissao = permissaoRepository.getReferenceById(id);
         permissaoRepository.delete(permissao);
         return new PermissaoDTO(permissao);
     }

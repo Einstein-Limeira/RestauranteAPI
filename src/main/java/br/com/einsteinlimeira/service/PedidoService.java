@@ -1,6 +1,5 @@
 package br.com.einsteinlimeira.service;
 
-import br.com.einsteinlimeira.exceptions.ResourceNotFoundException;
 import br.com.einsteinlimeira.model.dto.PedidoDTO;
 import br.com.einsteinlimeira.model.entity.Pedido;
 import br.com.einsteinlimeira.repository.PedidoRepository;
@@ -20,7 +19,8 @@ public class PedidoService {
     }
 
     public PedidoDTO findOrderById(Integer id) {
-        return pedidoRepository.findById(id).map(PedidoDTO::new).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
+        Pedido findOrder =  pedidoRepository.getReferenceById(id);
+        return new PedidoDTO(findOrder);
     }
 
     public PedidoDTO saveOrder(PedidoDTO pedidoDTO) {
@@ -28,7 +28,7 @@ public class PedidoService {
     }
 
     public PedidoDTO updateOrder(Integer id, PedidoDTO pedidoDTO) {
-        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
+        Pedido pedido = pedidoRepository.getReferenceById(id);
 
         Pedido newPedido = pedidoDTO.toEntity();
         BeanUtils.copyProperties(newPedido, pedido, "id");
@@ -37,7 +37,7 @@ public class PedidoService {
     }
 
     public PedidoDTO deleteOrder(Integer id) {
-        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido", id));
+        Pedido pedido = pedidoRepository.getReferenceById(id);
         pedidoRepository.delete(pedido);
         return new PedidoDTO(pedido);
     }
