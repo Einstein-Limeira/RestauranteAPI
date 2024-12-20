@@ -57,31 +57,31 @@ $ /home/<nome-do-usuario>/restaurante/restaurante.properties
 🔹 GET
 ```bash
 # Retorna todos os registros
-$ http://localhost:8080/fornecedor/v1
+$ http://localhost:8080/produto/v1
 ```
 
 🔹 GET
 ```bash
 # Retorna o registro pelo ID
-$ http://localhost:8080/fornecedor/v1/{💲id}
+$ http://localhost:8080/produto/v1/{💲id}
 ```
 
 🔹 POST
 ```bash
 # Salva um registro
-$ http://localhost:8080/fornecedor/v1
+$ http://localhost:8080/produto/v1
 ```
 
 🔹 PATCH
 ```bash
 # Atualiza um registro
-$ http://localhost:8080/fornecedor/v1/{💲id}
+$ http://localhost:8080/produto/v1/{💲id}
 ```
 
 🔹 DELETE
 ```bash
 # Deleta um registro
-$ http://localhost:8080/fornecedor/v1/{💲id}
+$ http://localhost:8080/produto/v1/{💲id}
 ```
 
 
