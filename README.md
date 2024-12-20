@@ -18,6 +18,38 @@
 
  <br> 
 
+ ## 🐘 Banco de Dados
+
+Para que a API consiga se conectar ao Banco de Dados, é necessário que o arquivo `restaurante.properties` esteja localizado no diretório home do seu computador, dentro da pasta `restaurante`, funcionando tanto em sistemas Linux quanto Windows.
+
+
+ <br>
+
+
+🌐 Windows
+```bash
+# Caminho para Windows
+$ C:\Users\<nome-do-usuario>\restaurante\restaurante.properties
+```
+
+🐧 Linux
+```bash
+# Caminho para Linux
+$ /home/<nome-do-usuario>/restaurante/restaurante.properties
+```
+
+
+ <br>
+
+
+**Baixe o arquivo `restaurante.properties` e coloque-o no diretório apropriado.**
+
+🔹 [restaurante.properties](src/main/resources/examples/example.properties)
+
+
+<br>
+
+
 ## 🖥️ Desenvolvido por:
 
 ### 📝 Linkedin: [Gustavo Correa](https://www.linkedin.com/in/gustavo-chauar-correa-946168269/)
