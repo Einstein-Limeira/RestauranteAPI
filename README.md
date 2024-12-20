@@ -14,6 +14,8 @@
 
 * Java 17
 
+* Postgres 16
+
 * Spring Boot 3.3.5
 
  <br> 
