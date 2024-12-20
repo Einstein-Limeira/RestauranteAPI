@@ -50,6 +50,52 @@ $ /home/<nome-do-usuario>/restaurante/restaurante.properties
 <br>
 
 
+## 🔷 Principais Métodos Disponíveis
+
+ <br> 
+
+🔹 GET
+```bash
+# Retorna todos os registros
+$ http://localhost:8080/fornecedor/v1
+```
+
+🔹 GET
+```bash
+# Retorna o registro pelo ID
+$ http://localhost:8080/fornecedor/v1/{💲id}
+```
+
+🔹 POST
+```bash
+# Salva um registro
+$ http://localhost:8080/fornecedor/v1
+```
+
+🔹 PATCH
+```bash
+# Atualiza um registro
+$ http://localhost:8080/fornecedor/v1/{💲id}
+```
+
+🔹 DELETE
+```bash
+# Deleta um registro
+$ http://localhost:8080/fornecedor/v1/{💲id}
+```
+
+
+<br>
+
+
+## ⚠️ Observação
+
+Os exemplos acima são ilustrativos. Por favor, consulte a documentação da API para verificar os verbos HTTP disponíveis para cada endpoint.
+
+
+<br>
+
+
 ## 🖥️ Desenvolvido por:
 
 ### 📝 Linkedin: [Gustavo Correa](https://www.linkedin.com/in/gustavo-chauar-correa-946168269/)
